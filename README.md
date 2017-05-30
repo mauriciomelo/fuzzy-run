@@ -1,7 +1,7 @@
 # fuzzy-run
 Just run it!
 
-Run your npm scripts with the power of the fuzzy search,
+Run your npm scripts with the power of the fuzzy search.
 
 ## Install
 
