@@ -16,7 +16,7 @@ log.add(log.transports.Console, { colorize: true });
 const prompt = () => {
   inquirer.prompt({
     message: 'Choose a command to run:',
-    type: 'list',
+    type: 'rawlist',
     name: 'command',
     pageSize: 100,
     choices: commands.map(c => c.command),
