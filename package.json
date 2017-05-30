@@ -1,0 +1,36 @@
+{
+  "name": "fuzzy-run",
+  "version": "1.0.0",
+  "description": "Dev  ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && mocha lib/**/*.spec.js",
+    "lint": "eslint .",
+    "build": "echo Building... Done!"
+  },
+  "keywords": [
+    "cli",
+    "dev-cli",
+    "dev",
+    "assistant"
+  ],
+  "bin": {
+    "run": "index.js"
+  },
+  "author": "Mauricio Melo",
+  "license": "ISC",
+  "dependencies": {
+    "fuse.js": "^3.0.3",
+    "inquirer": "^3.0.6",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.4.1",
+    "proxyquire": "^1.8.0",
+    "sinon": "^2.2.0"
+  }
+}
