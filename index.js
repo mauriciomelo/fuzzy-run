@@ -1,17 +1,15 @@
 #! /usr/bin/env node
 /* eslint import/no-dynamic-require: 0 */
 
-const log = require('winston');
+const log = require('./lib/logger');
 const inquirer = require('inquirer');
 const search = require('./lib/search');
 const exec = require('./lib/exec');
+const chalk = require('chalk');
 
 const packageJSON = require(`${process.cwd()}/package.json`);
 const commands = Object.keys(packageJSON.scripts).map(command => ({ command, humanized: command.split(':').join(' ') }));
 const searchTerm = process.argv.slice(2).join(' ');
-
-log.remove(log.transports.Console);
-log.add(log.transports.Console, { colorize: true });
 
 const prompt = () => {
   inquirer.prompt({
@@ -32,8 +30,9 @@ const fuseSearch = () => {
   if (result.length > 0) {
     const command = result[0].item.command;
     exec(command);
+    log.info(`running ${chalk.green.bold(command)}`);
   } else {
-    log.error(`There are no results that match "${searchTerm}"`);
+    log.error('Command not found');
     process.exit(1);
   }
 };
