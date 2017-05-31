@@ -1,13 +1,20 @@
 #! /usr/bin/env node
 /* eslint import/no-dynamic-require: 0 */
 
-const log = require('./lib/logger');
+const fs = require('fs');
+const chalk = require('chalk');
 const inquirer = require('inquirer');
+const log = require('./lib/logger');
 const search = require('./lib/search');
 const exec = require('./lib/exec');
-const chalk = require('chalk');
 
-const packageJSON = require(`${process.cwd()}/package.json`);
+const packageJSONPath = `${process.cwd()}/package.json`;
+if (!fs.existsSync(packageJSONPath)) {
+  log.error('package.json not found');
+  process.exit(1);
+}
+
+const packageJSON = require(packageJSONPath);
 const commands = Object.keys(packageJSON.scripts).map(command => ({ command, humanized: command.split(':').join(' ') }));
 const searchTerm = process.argv.slice(2).join(' ');
 
